@@ -1,0 +1,15 @@
+# Ignore the virtual environment folder
+env/
+
+# Ignore Python cache directories
+__pycache__/
+
+# Ignore any compiled Python files
+*.pyc
+
+# Ignore VS Code specific settings
+.vscode/
+
+# Ignore other unneeded files or folders
+static/
+templates/
