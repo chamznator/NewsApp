@@ -1,22 +1,26 @@
-import openai
 import os
+from openai import OpenAI
 
-# Initialize OpenAI client with your API key
-openai.api_key = os.getenv("OPENAI_API_KEY") or "your_openai_api_key"  # Replace as needed
+# Initialize the OpenAI client
+client = OpenAI(
+    api_key=os.environ.get("OPENAI_API_KEY")  # Replace with your API key if not using environment variables
+)
 
 def summarize_text(text):
     try:
-        # Make the API call to generate a completion (synchronous version)
-        response = openai.ChatCompletion.create(
-            model="gpt-4",  # Use the appropriate model, e.g., 'gpt-3.5-turbo' or 'gpt-4'
+        # Create a chat completion request
+        chat_completion = client.chat.completions.create(
             messages=[
-                { "role": "system", "content": "You are a helpful assistant that summarizes text." },
-                { "role": "user", "content": f"Please summarize the following text:\n\n{text}" }
-            ]
+                {
+                    "role": "user",
+                    "content": f"Please summarize the following text:\n\n{text}"
+                }
+            ],
+            model="gpt-3.5-turbo"  # Use a model you have access to, like 'gpt-3.5-turbo' or 'gpt-4'
         )
-
-        # Extract the summary from the response
-        summary = response.choices[0].message['content'].strip()
+        
+        # Extract the response content using dot notation
+        summary = chat_completion.choices[0].message.content.strip()
         return summary
     except Exception as e:
         print(f"Error during summarization: {e}")
