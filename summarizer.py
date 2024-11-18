@@ -12,20 +12,18 @@ client = OpenAI(
 
 def summarize_text(text):
     try:
-        # Create a chat completion request
         chat_completion = client.chat.completions.create(
             messages=[
                 {
                     "role": "user",
-                    "content": f"Please summarize the following text:\n\n{text}"
+                    "content": f"Summarize the following text into 3 or fewer paragraphs:\n\n{text}"
                 }
             ],
-            model="gpt-3.5-turbo"  # Use a model you have access to, like 'gpt-3.5-turbo' or 'gpt-4'
+            model="gpt-4o"
         )
-        
-        # Extract the response content using dot notation
         summary = chat_completion.choices[0].message.content.strip()
         return summary
     except Exception as e:
         print(f"Error during summarization: {e}")
         return "An error occurred during summarization."
+
