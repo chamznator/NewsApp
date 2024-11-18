@@ -3,13 +3,31 @@ env/
 
 # Ignore Python cache directories
 __pycache__/
-
-# Ignore any compiled Python files
 *.pyc
 
 # Ignore VS Code specific settings
 .vscode/
 
-# Ignore other unneeded files or folders
+# Ignore static and template files if they are generated or not needed in the repository
 static/
 templates/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore log files
+*.log
+
+# Ignore environment variable files
+.env
+
+# Ignore build artifacts and distribution packages
+build/
+dist/
+*.egg-info/
+
+# Ignore local database files
+*.sqlite3
+
+# Ignore any other unneeded files or folders
